@@ -73,5 +73,15 @@ module.exports = {
   },
   // 构建时开启多进程处理 babel 编译
   // 是否为 Babel 或 TypeScript 使用 thread-loader。
-  parallel: require('os').cpus().length > 1
+  parallel: require('os').cpus().length > 1,
+  //解决favicon问题
+  pwa:{
+    iconPaths: {
+      favicon32     : 'favicon.ico',
+      favicon16     : 'favicon.ico',
+      appleTouchIcon: 'favicon.ico',
+      maskIcon      : 'favicon.ico',
+      msTileImage   : 'favicon.ico'
+    }
+  }
 }
