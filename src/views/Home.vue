@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <section class="page index">
     <el-button @click="clickContent">确定</el-button>
     <el-table :data="content" border>
       <el-table-column prop="help_topic_id" label="1"  show-overflow-tooltip></el-table-column>
@@ -9,7 +9,7 @@
       <el-table-column prop="example" label="5"  show-overflow-tooltip></el-table-column>
       <el-table-column prop="url" label="6"  show-overflow-tooltip></el-table-column>
     </el-table>
-  </div>
+  </section>
 </template>
 
 <script lang="ts">
@@ -18,7 +18,7 @@ import DataAPi from '@/api/data-api'
 
 @Component
 export default class Home extends Vue {
-  private content:any = []
+  private content:Array<any> = []
 
   clickContent () {
     DataAPi.getConfiguration().subscribe(data => {
@@ -28,5 +28,10 @@ export default class Home extends Vue {
 }
 </script>
 <style lang="less" scoped>
-
+  .page.index {
+    background: mediumturquoise;
+  }
+</style>
+<style lang="less">
+  @import "../assets/styles/default.less";
 </style>
