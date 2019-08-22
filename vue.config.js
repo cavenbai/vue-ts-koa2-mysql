@@ -15,7 +15,7 @@ module.exports = {
     port: '8080',
     hot: true,
     https: false, // 启用https
-    proxy: 'http://10.169.16.43:8080'
+    proxy: 'http://localhost:3000'
   },
   productionSourceMap: false, // 生产环境是否生成 sourceMap 文件
   outputDir: 'dist', // 打包之后的文件名称

@@ -1,8 +1,8 @@
-import router from '@/router'
+// import router from '@/router'
 import axios from 'axios'
 // import Qs from 'qs'
 import { Observable } from 'rxjs'
-import { Message, MessageBox, Notification, Loading } from 'element-ui'
+// import { Message, MessageBox, Notification, Loading } from 'element-ui'
 
 const getType = ['GET', 'DELETE'] // 使用GET请求类型
 export default class NetService {

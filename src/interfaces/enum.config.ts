@@ -20,7 +20,4 @@ enum requestType {
   Patch = "PATCH"
 }
 
-
-export {
-  requestType,
-};
+export { requestType }
