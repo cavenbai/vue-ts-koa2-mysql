@@ -1,14 +1,13 @@
 <template>
   <section class="page index">
-    <div style="width:100%;height:500px">
-      <swiper :options="swiperOption" ref="mySwiper">
+    <div>
+      <swiper :options="swiperOption" ref="mySwiper" style="width:50%;height:300px">
         <swiper-slide v-for="(item,index) of items" :key="index">
-          <img :src="item.src" alt="" style="width: 100%;height: 500px">
+          <img :src="item.src" alt="index" style="width: 100%;height: 100%">
         </swiper-slide>
         <div class="swiper-pagination" slot="pagination"></div>
         <div class="swiper-button-prev swiper-button-black" slot="button-prev"></div>
         <div class="swiper-button-next swiper-button-black" slot="button-next"></div>
-        <div class="swiper-scrollbar"   slot="scrollbar"></div>
       </swiper>
     </div>
 
@@ -41,7 +40,7 @@ export default class Home extends Vue {
     fadeEffect: {
       crossFade: true,
     },
-    effect : 'slide',
+    effect : 'coverflow',
     speed:800, //滑动速度
     direction : 'horizontal', //滑动方向
     //滑动之后回调函数
@@ -67,7 +66,6 @@ export default class Home extends Vue {
     {src: require('../assets/images/3.jpg')},
     {src: require('../assets/images/4.jpg')},
     {src: require('../assets/images/5.jpg')},
-    {src: require('../assets/images/6.jpg')}
   ]
 
   private clickContent() :void{
