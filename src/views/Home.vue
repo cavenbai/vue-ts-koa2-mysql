@@ -1,6 +1,18 @@
 <template>
   <section class="page index">
-    <el-button @click="clickContent">确定</el-button>
+    <div style="width:100%;height:500px">
+      <swiper :options="swiperOption" ref="mySwiper">
+        <swiper-slide v-for="(item,index) of items" :key="index">
+          <img :src="item.src" alt="" style="width: 100%;height: 500px">
+        </swiper-slide>
+        <div class="swiper-pagination" slot="pagination"></div>
+        <div class="swiper-button-prev swiper-button-black" slot="button-prev"></div>
+        <div class="swiper-button-next swiper-button-black" slot="button-next"></div>
+        <div class="swiper-scrollbar"   slot="scrollbar"></div>
+      </swiper>
+    </div>
+
+    <el-button @click="clickContent" type="success">确定</el-button>
     <el-table :data="content" border>
       <el-table-column prop="help_topic_id" label="1"  show-overflow-tooltip></el-table-column>
       <el-table-column prop="name" label="2"  show-overflow-tooltip></el-table-column>
@@ -15,12 +27,50 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import DataAPi from '@/api/data-api'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
-@Component
+@Component({components: { swiper, swiperSlide} })
 export default class Home extends Vue {
   private content:Array<any> = []
 
-  clickContent () {
+  private swiperOption:object = {
+    notNextTick: true,
+    loop:true, //循环
+    initialSlide:0, //设定初始化时slide的索引
+    autoplay:true,  //自动播放
+    fadeEffect: {
+      crossFade: true,
+    },
+    effect : 'slide',
+    speed:800, //滑动速度
+    direction : 'horizontal', //滑动方向
+    //滑动之后回调函数
+    on: {
+      slideChangeTransitionEnd: function(){
+        // console.log(this.activeIndex);//切换结束时，告诉我现在是第几个slide
+      },
+    },
+    //左右点击
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    //分页器设置
+    pagination: {
+      el: '.swiper-pagination',
+      clickable :true
+    }
+  }
+  private items:any[] = [
+    {src: require('../assets/images/1.jpg')},
+    {src: require('../assets/images/2.jpg')},
+    {src: require('../assets/images/3.jpg')},
+    {src: require('../assets/images/4.jpg')},
+    {src: require('../assets/images/5.jpg')},
+    {src: require('../assets/images/6.jpg')}
+  ]
+
+  private clickContent() :void{
     DataAPi.getConfiguration().subscribe(data => {
       this.content = data.data
     })
@@ -29,9 +79,6 @@ export default class Home extends Vue {
 </script>
 <style lang="less" scoped>
   .page.index {
-    background: mediumturquoise;
+    background-color: mediumturquoise;
   }
-</style>
-<style lang="less">
-  @import "../assets/styles/default.less";
 </style>

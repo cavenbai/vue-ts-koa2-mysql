@@ -7,5 +7,5 @@
 </template>
 
 <style lang="less">
-
+  @import "assets/styles/default.less";
 </style>
