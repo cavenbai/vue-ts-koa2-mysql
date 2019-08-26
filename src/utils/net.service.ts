@@ -81,15 +81,27 @@ export default class NetService {
             observer.error()
           }))
         }
-      }).catch(this.catchHandle(options, observer))
+      }).catch((ex) => {
+        let error: any = {msg: ""}
+        // 通讯状态检测
+        if (!ex.response) {
+          let error = {msg: "服务端连接异常，请检查服务端状态"}
+          return loadingPromise.then(emitResult(() => {
+            observer.error(error)
+          }))
+        }
+
+        // 错误类型检测
+        switch (ex.response.status) {
+          case 500:error.msg = "服务端内部错误,请稍后重试"; break;
+          default:error.msg = "服务器内部错误,请稍后重试";break;
+        }
+        return loadingPromise.then(emitResult(() => {
+          observer.error(error)
+        }))
+      })
     })
 
     return observable
-  }
-  // 异常处理后续添加
-  private catchHandle (options:any, observer:any) {
-    return (ex) => {
-      observer.error(ex)
-    }
   }
 }

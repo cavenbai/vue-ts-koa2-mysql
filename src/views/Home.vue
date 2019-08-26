@@ -71,6 +71,8 @@ export default class Home extends Vue {
   private clickContent() :void{
     DataAPi.getConfiguration().subscribe(data => {
       this.content = data.data
+    },({msg}) => {
+      this.$notify.error({title: '错误', message: msg});
     })
   }
 }
