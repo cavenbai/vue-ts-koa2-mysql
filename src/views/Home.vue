@@ -10,6 +10,8 @@
         <div class="swiper-button-next swiper-button-black" slot="button-next"></div>
       </swiper>
     </div>
+    <p>{{name | encryptPhone}}</p>
+    <el-time-picker class="timer" v-model="deviceRecordTime" readonly disabled :editable="false" :clearable="false"></el-time-picker>
 
     <el-button @click="clickContent" type="success">确定</el-button>
     <el-table :data="content" border>
@@ -20,6 +22,22 @@
       <el-table-column prop="example" label="5"  show-overflow-tooltip></el-table-column>
       <el-table-column prop="url" label="6"  show-overflow-tooltip></el-table-column>
     </el-table>
+    <svg width="100" height="100">
+      <rect x="10" y="10" width="100" height="100" fill="blue" />
+    </svg>
+    <svg>
+      <text x="10" y="10">白鹏飞</text>
+    </svg>
+    <svg>
+      <circle cx="50" cy="50" r="50" fill="#529fca" />
+    </svg>
+    <svg>
+      <line x1="0" y1="0" x2="100" y2="100" stroke="#529fca" />
+    </svg>
+    <svg height="300" width="300">
+      <path d="M 100 100 L 200 200 H 10 V 40 H 70"
+            fill="#59fa81" stroke="#d85b49" stroke-width="3" />
+    </svg>
   </section>
 </template>
 
@@ -32,6 +50,13 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 export default class Home extends Vue {
   private content:Array<any> = []
 
+  private deviceRecordTime:any = 0
+
+  private name:string = 'dffdggfddfgdfgffgfg'
+
+  private mounted() {
+    this.deviceRecordTime = new Date(1970, 1, 1, 0, 0, 0);
+  }
   private swiperOption:object = {
     notNextTick: true,
     loop:true, //循环

@@ -1,5 +1,8 @@
-import { FilterService } from '@/utils/filter.service'
-
 export default function ({ store }:any): Object {
-  return FilterService
+  return {
+    encryptPhone: function (value:string) :string{
+      if (!value || value === '') return ''
+      return value.substr(0, 3) + '****' + value.substr(7)
+    }
+  }
 }
