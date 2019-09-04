@@ -5,11 +5,27 @@ import { Observable } from 'rxjs'
 
 const netServer = new NetService()
 export default {
-  getConfiguration: function ():Observable<any> {
+  login: function (model):Observable<any> {
     const option:netParamConfig = {
-      url: '/default/1',
-      method: requestType.Get,
-      loading: true
+      url: '/default/login',
+      method: requestType.Post,
+      loading: true,
+      data: {
+        username:model.username,
+        password:model.password
+      }
+    }
+    return netServer.send(option)
+  },
+  register: function (model):Observable<any> {
+    const option:netParamConfig = {
+      url: '/default/register',
+      method: requestType.Post,
+      loading: true,
+      data: {
+        username:model.username,
+        password:model.password
+      }
     }
     return netServer.send(option)
   }

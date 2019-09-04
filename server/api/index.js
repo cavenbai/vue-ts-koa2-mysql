@@ -1,7 +1,10 @@
 const query = require('../db')
 
 module.exports = {
-  userLogin: function (username) {
-    return query('SELECT * FROM help_topic LIMIT 10')
+  login: function (userInformation) {
+    return query(`SELECT * FROM customer WHERE user_name = '${userInformation.username}'`)
+  },
+  register: function (userInformation) {
+    return query(`INSERT INTO customer (user_name,pass_word) VALUES ('${userInformation.username}','${userInformation.password}') `)
   }
 }

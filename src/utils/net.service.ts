@@ -77,7 +77,7 @@ export default class NetService {
           }))
         }else{
           loadingPromise.then(emitResult(() => {
-            observer.error()
+            observer.error(data)
           }))
         }
       }).catch((ex) => {

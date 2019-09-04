@@ -18,6 +18,7 @@
             <el-row type="flex" justify="center" style="margin-top:20px">
               <el-form-item>
                 <el-button type="primary" width="200px" @click="submitForm">登录</el-button>
+                <el-button type="primary" width="200px" @click="register">注册</el-button>
               </el-form-item>
             </el-row>
           </el-form>
@@ -43,15 +44,18 @@ export default class Login extends Vue{
     const loginForm:any = this.$refs['login-form'] as HTMLElement
     loginForm.validate(valid => {
       if(!valid) return
-      this.$router.push('/home')
-      // DataAPi.getConfiguration().subscribe(data => {
-      //   localStorage.setItem('userName', '234')
-      //   localStorage.setItem('userPassWard', '654')
-      //   this.$router.push('/home')
-      // },({msg}) => {
-      //   this.$notify.error({title: '错误', message: msg});
-      // })
-
+      DataAPi.login(this.loginModel).subscribe(data => {
+        this.$router.push('/home')
+      },({msg}) => {this.$notify.error({title: '错误', message: msg})})
+    })
+  }
+  private register() {
+    const loginForm:any = this.$refs['login-form'] as HTMLElement
+    loginForm.validate(valid => {
+      if(!valid) return
+      DataAPi.register(this.loginModel).subscribe(data => {
+        this.$notify.success({title: '成功', message: data.msg})
+      },({msg}) => {this.$notify.error({title: '错误', message: msg})})
     })
   }
 }
@@ -59,8 +63,8 @@ export default class Login extends Vue{
 
 <style lang="less" scoped>
   .page.index {
-    background-color: mediumturquoise;
-    background-image: url("../assets/images/bg.jpg");
+    background-image: url("../assets/images/bg6.jpg");
+    background-size: 100% 100%;
     display: flex;
     justify-content: center;
     align-items: center;
