@@ -3,13 +3,13 @@
       <div class="login-box">
         <el-row>
           <el-form ref="login-form" :model="loginModel" :rules="loginRule">
-            <el-row type="flex" justify="center" style="margin-top:50px">
+            <el-row type="flex"  style="margin-top:50px">
               <el-form-item label="用户名" prop="username">
                 <el-input type="text" v-model="loginModel.username" placeholder="请输入用户名" @on-keyup.enter="submitForm">
                 </el-input>
               </el-form-item>
             </el-row>
-            <el-row type="flex" justify="center">
+            <el-row type="flex">
               <el-form-item label="密码" prop="password">
                 <el-input type="password" v-model="loginModel.password" placeholder="请输入密码" @on-keyup.enter="submitForm">
                 </el-input>
@@ -17,7 +17,7 @@
             </el-row>
             <el-row type="flex" justify="center" style="margin-top:20px">
               <el-form-item>
-                <el-button type="primary" @click="submitForm">登录</el-button>
+                <el-button type="primary" width="200px" @click="submitForm">登录</el-button>
               </el-form-item>
             </el-row>
           </el-form>
@@ -28,6 +28,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import DataAPi from '@/api/data-api'
 @Component
 export default class Login extends Vue{
   private loginModel: object = {
@@ -43,6 +44,14 @@ export default class Login extends Vue{
     loginForm.validate(valid => {
       if(!valid) return
       this.$router.push('/home')
+      // DataAPi.getConfiguration().subscribe(data => {
+      //   localStorage.setItem('userName', '234')
+      //   localStorage.setItem('userPassWard', '654')
+      //   this.$router.push('/home')
+      // },({msg}) => {
+      //   this.$notify.error({title: '错误', message: msg});
+      // })
+
     })
   }
 }
@@ -51,6 +60,7 @@ export default class Login extends Vue{
 <style lang="less" scoped>
   .page.index {
     background-color: mediumturquoise;
+    background-image: url("../assets/images/bg.jpg");
     display: flex;
     justify-content: center;
     align-items: center;
@@ -58,7 +68,10 @@ export default class Login extends Vue{
       background: white;
       width: 450px;
       height: 440px;
-      box-shadow: 1px 1px 10px 1px #ddd;
+      padding: 0 50px;
+      &:hover {
+        box-shadow: 1px 1px 10px 1px #ddd;
+      }
     }
   }
 </style>

@@ -1,3 +1,4 @@
+
 export default function ({ store }:any): Object {
   return {
     encryptPhone: function (value:string) :string{

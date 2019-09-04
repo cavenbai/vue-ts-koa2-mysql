@@ -4,7 +4,6 @@ import axios from 'axios'
 import { Observable } from 'rxjs'
 import { LoadingService } from "@/utils/loading.service";
 import { netParamConfig } from '@/interfaces/net.config'
-// import { Message, MessageBox, Notification, Loading } from 'element-ui'
 
 const getType = ['GET', 'DELETE'] // 使用GET请求类型
 export default class NetService {

@@ -12,8 +12,6 @@ async function startUp () {
   // 生成提示信息
   Vue.config.productionTip = false
 
-  // Vue.prototype.$EventBus = new Vue() // 临时先这样
-
   new Vue({
     router,
     store,
